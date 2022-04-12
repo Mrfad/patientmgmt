@@ -3,6 +3,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.db.models import Q
+from django.core.paginator import Paginator
 from .models import Patient
 
 # function to render the home page
@@ -13,6 +15,18 @@ def frontend(request):
 @login_required(login_url="login")
 def backend(request):
     if 'q' in request.GET:
+        q = request.GET['q']
+        all_patients_list = Patient.objects.filter(
+            Q(name__icontains=q) | Q(phone=q) | Q(email=q) | Q(phone=q) | Q(gender=q) | Q(note__icontains=q)
+        ).order_by('-created_at')
+    else:
+        all_patients_list = Patient.objects.all().order_by('-created_at')
+    
+    paginator = Paginator(all_patients_list, 2)
+    page = request.GET.get('page')
+    all_patients = paginator.get_page(page)
+    context = {"patients":all_patients}
+    return render(request, 'app/backend.html', context)
         
 
 # function to add patient
