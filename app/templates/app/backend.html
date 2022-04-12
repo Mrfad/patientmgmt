@@ -1,5 +1,13 @@
 {% extends 'app/base.html' %}
 
+{% block navbar-content %}
+    <i class='fas fa-hospital-user'></i>&nbsp; &nbsp; Patients
+{% endblock navbar-content %}
+
+{% block nav-btn %}
+    <a href="{% url 'logout' %}" class="btn btn-outline-danger text-light btn-sm border-light" id="btn-nav">Logout</a>
+{% endblock nav-btn %}
+
 {% block content %}
-<h1 class="text-primary text-center">Hello Backend</h1>
+<h1 class="text-success text-center">Hello Backend</h1>
 {% endblock content %}

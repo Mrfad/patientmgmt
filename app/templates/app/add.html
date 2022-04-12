@@ -1,0 +1,16 @@
+{% extends 'app/base.html' %}
+
+<!--NAVBAR CONTENT-->
+{% block navbar-content %}
+    <i class='fas fa-user-plus'></i>&nbsp; &nbsp; Add Patient
+{% endblock navbar-content %}
+
+<!-- BUTTON ON NAVBAR -->
+{% block nav-btn %}
+    <a href="{% url 'logout' %}" class="btn btn-outline-danger text-light btn-sm border-light" id="btn-nav">GO BACK</a>
+{% endblock nav-btn %}
+
+<!-- PAGE CONTENT -->
+{% block content %}
+    <h1 class="text-center">ADD PAGE</h1> 
+{% endblock content %}

@@ -1,5 +1,14 @@
 {% extends 'app/base.html' %}
-
+{% load static %}
 {% block content %}
-<h1 class="text-primary text-center">Frontend</h1>
+<style>
+    body{
+        background-image: url("/static/app/img/home.jpg");
+        background-position: center 0px;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+
 {% endblock content %}
