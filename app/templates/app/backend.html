@@ -1,13 +1,23 @@
 {% extends 'app/base.html' %}
 
+<!-- Title on tab browser -->
+{% block title %}All Patients{% endblock title %}
+
+<!-- Navbar Content -->
 {% block navbar-content %}
     <i class='fas fa-hospital-user'></i>&nbsp; &nbsp; Patients
 {% endblock navbar-content %}
 
+<!-- Button on Navbar -->
 {% block nav-btn %}
     <a href="{% url 'logout' %}" class="btn btn-outline-danger text-light btn-sm border-light" id="btn-nav">Logout</a>
 {% endblock nav-btn %}
 
+<!-- Content page -->
 {% block content %}
-<h1 class="text-success text-center">Hello Backend</h1>
+<h1 class="text-success text-center">Backend Page</h1>
+<br>
+<center>
+    <a href="{% url 'add_patient' %}" class="btn btn-primary btn-sm text-div" style="width: 200px;">Add patient</a>
+</center>
 {% endblock content %}
