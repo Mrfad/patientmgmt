@@ -12,7 +12,8 @@ def frontend(request):
 # function to render the backend
 @login_required(login_url="login")
 def backend(request):
-    return render(request, 'app/backend.html')
+    if 'q' in request.GET:
+        
 
 # function to add patient
 @login_required(login_url="login")
@@ -31,4 +32,3 @@ def add_patient(request):
             return HttpResponseRedirect('/backend')
     else:
         return render(request, "app/add.html")
-            
