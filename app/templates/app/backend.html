@@ -25,7 +25,7 @@
 
     <form action="">
         <div class="input-group input-group-sm mb-3 mt-4">
-            <input name="q" type="text" class="form-control" placeholder="Search for">
+            <input name="q" type="text" class="form-control" placeholder="Search for" value={{ request.GET.q}}>
             <button class="btn btn-secondary"><i class="fas fa-search"></i></button>
             <a href="{% url 'backend' %}" class="btn btn-dark" style="margin-left:2px;"><i class="fas fa-sync-alt"></i></a>
         </div>
@@ -35,13 +35,13 @@
         <table class="table table-bordered table-sm mt-4" style="text-align: center; font-size: 14px;">
             <thead class="table-secondary">
                 <tr>
-                    <th>Name</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Age</th>
-                    <th>Gender</th>
-                    <th>Registered</th>
-                    <th>Action</th>
+                    <th style="width:21%;">Name</th>
+                    <th style="width:15%;">Phone</th>
+                    <th style="width:21%;">Email</th>
+                    <th style="width:8%;">Age</th>
+                    <th style="width:7%;">Gender</th>
+                    <th style="width:18%;">Registered</th>
+                    <th style="width:10%;" colspan="2">Action</th>
                 </tr>
             </thead>
             <!-- DATA from backend -->
@@ -53,7 +53,16 @@
                 <td>{{patient.age}}</td>
                 <td>{{patient.gender}}</td>
                 <td>{{patient.created_at | date:'m/d/Y (H:i)'}}</td>
-                <td>{{patient.name}}</td>
+                <td>
+                    <a href="{% url 'patient' patient.id %}" class="btn btn-primary" title="Edit Patient">
+                        <i class="fas fa-pen"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'delete_patient' patient.id %}" class="btn btn-secondary" title="Delete Patient">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
             </tr>
             {% endfor %}
         </table>
@@ -87,5 +96,16 @@
         </ul>
         {% endif %}
     </nav>
+    <!--  Messages from backend -->
+
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            let n = "{{ message }}"
+            swal('perfect', n, "success")
+        </script>
+        {% endif %}
+    {% endfor %}
 </div>
 {% endblock content %}
